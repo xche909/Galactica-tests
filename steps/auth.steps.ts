@@ -186,10 +186,10 @@ export class AuthSteps {
   }
 
   static async cleanupTestUsers() {
-    const emailQuery = 'DELETE FROM user WHERE email like "%regression%"';
+    const emailQuery = "DELETE FROM user WHERE email like '%regression%'";
     await db.query(emailQuery);
 
-    const deviceQuery = 'DELETE FROM user WHERE deviceId like "%regression%"';
+    const deviceQuery = "DELETE FROM user WHERE deviceId like '%regression%'";
     await db.query(deviceQuery);
   }
 }
