@@ -1,0 +1,27 @@
+name: Run API tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Choose an environment'
+        type: choice
+        required: true
+        default: 'dev'
+        options:
+          - 'dev'
+
+jobs:
+  run-api-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - name: Install test dependencies
+        run: npm install
+      - name: Run API tests
+        run: npm run test
+        env: 
+          TEST_ENV: ${{ inputs.environment || 'dev' }}
